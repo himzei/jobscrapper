@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <title>Job Searching</title>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li>
+            <a href="/"><h3>취업성공!</h3></a>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <a href="/export?keyword={{keyword}}"><button class="secondary">CSV 다운로드</button></a>
+          </li>
+        </ul>
+      </nav>
+      <hr />
+    </header>
+    <main class="container">
+      <h1>잡스크래핑(Search)</h1>
+      <h5>키워드 '{{ keyword }}'로 {{ counts }}개가 검색되었습니다.</h5>
+      <table class="striped">
+        <thead data-theme="dark">
+          <tr>
+            <th>No</th>
+            <th>공고제목</th>
+            <th>회사</th>
+            <th>지역</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i, job in jobs %}
+          <tr>
+            <td>{{i + 1}}</td>
+            <td><a target="_blank" href="{{job["link"]}}">{{job["title"]}}</a></td>
+            <td>{{job["company"]}}</td>
+            <td>{{job["location"]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </main>
+    <footer class="container">
+      <hr />
+      <h6>Copyright&copy;2024 Kenjo All rights reserved</h6>
+    </footer>
+  </body>
+</html>
